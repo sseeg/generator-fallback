@@ -1,5 +1,5 @@
 /* 
- * The MIT License (MIT)
+ * This file is part of generator-fallback, licensed under the MIT License (MIT).
  * 
  * Copyright (c) 2015 sseeg
  *
