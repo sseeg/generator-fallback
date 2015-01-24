@@ -1,7 +1,7 @@
 /* 
  * This file is part of generator-fallback, licensed under the MIT License (MIT).
  * 
- * Copyright (c) 2015 sseeg
+ * Copyright (c) 2015 seeg_
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -105,15 +105,36 @@ var FallbackGenerator = yeoman.generators.Base.extend({
         this.test        = response.test;
         this.cslibs      = response.cslibs;
         
+        // Define template context
+        this.tplContext = {
+          appname: this.appname
+        }
+        
         done();
-      });
+      }.bind(this));
     }
   },
   
   // Write configuration and metadata files (eg. package.json, bower.json, editorconfig)
   configuring: function() {
-    //this.fs.copy()
-  }
+    // Copy package.json
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      this.tplContext
+    );
+    
+    // Copy bower.json
+    this.fs.copyTpl(
+      this.templatePath('_bower.json'),
+      this.destinationPath('bower.json'),
+      this.tplContext
+    );
+  },
+  
+  writing: function() {
+    
+  },
   
   end: function() {
     this.log(yosay(
