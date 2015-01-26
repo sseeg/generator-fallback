@@ -132,8 +132,11 @@ var FallbackGenerator = yeoman.generators.Base.extend({
     );
   },
   
-  writing: function() {
-    
+  // Use sub-generators for specific components
+  writing: {
+    fallback: function() {
+      this.fs.copy(this.templatePath('js/_init.js'), this.destinationPath('src/js/init.js'));
+    }
   },
   
   end: function() {
